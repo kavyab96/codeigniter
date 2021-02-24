@@ -59,44 +59,7 @@ class main extends CI_Controller {
 	}
 //insertion ends
 
-	//admin insert
-
-	public function adminreg()
-	{
-		$this->load->view('adminreg');
-	}
-	public function admin_insert()
-	{
-		$this->load->library('form_validation');
-
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules("fname","firstname",'required');
-		$this->form_validation->set_rules("lname","lastname",'required');
-		$this->form_validation->set_rules("uname","username",'required');
-		$this->form_validation->set_rules("pass","password",'required');
-		$this->form_validation->set_rules("mob","mobile",'required');
-		$this->form_validation->set_rules("email","email",'required');
-
-		if($this->form_validation->run())
-		{	
-			$this->load->model('mainmodel');
-			$pass=$this->input->post("pass");
-			$encpass=$this->mainmodel->encpassfn($pass);
-
-			$a=array("fname"=>$this->input->post("fname"),
-				"lname"=>$this->input->post("lname"),
-				"uname"=>$this->input->post("uname"),
-				"mobile"=>$this->input->post("mob"),
-				"email"=>$this->input->post("email"),
-				"password"=>$encpass,"user_type"=>'1',"status"=>'1');
-
-				$this->mainmodel->ad_regist($a);
-				redirect(base_url().'main/userreg');
-		}
-
-	}
-		
-//admin reg ends
+	
 
 //view
 
@@ -146,7 +109,7 @@ class main extends CI_Controller {
 			$this->load->model('mainmodel');
 			$uname=$this->input->post("uname");
 			$pass=$this->input->post("pass");
-			$rslt=$this->mainmodel->select_user($uname,$pass);
+			$rslt=$this->mainmodel->select_userpass($uname,$pass);
 
 			if($rslt)
 			{
