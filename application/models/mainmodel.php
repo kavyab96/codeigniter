@@ -48,7 +48,7 @@ class mainmodel extends CI_model
 	$qry=$this->db->update("user");
      return $qry;
 	}
-	public function select_user($uname,$pass)
+	public function select_userpass($uname,$pass)
 	{
 		$this->db->select('password');
 		$this->db->from("user");
@@ -66,7 +66,7 @@ class mainmodel extends CI_model
 		$this->db->select('id');
 		$this->db->from("user");
 		$this->db->where("uname",$uname);
-		return $this->db->get()->row('user');
+		return $this->db->get()->row('id');
 	}
 	public function get_user($id)
 	{
